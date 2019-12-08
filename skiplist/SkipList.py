@@ -17,7 +17,7 @@ class SkipList:
         update = [None] * len(self.head.next)
         x = self.head
 
-        if str(type(elem)) == "<class 'str'>":
+        if type(elem) == str:
             elem = DictionaryWord(elem)
         for i in reversed(range(len(self.head.next))):
             while x.next[i] is not None and x.next[i].elem.word < elem.word:
@@ -28,14 +28,14 @@ class SkipList:
 
     # Метод поиска слова в скип листе
     def find(self, elem, update=None):
-        if str(type(elem)) == "<class 'str'>":
+        if type(elem) == str:
             elem = DictionaryWord(elem)
         if update is None:
             update = self.updateList(elem)
         if len(update) > 0:
             candidate = update[0].next[0]
             if candidate is not None and candidate.elem.word == elem.word:
-                return candidate.elem
+                return candidate
         return None
 
     # Метод вставки слова в скип лист
@@ -50,6 +50,13 @@ class SkipList:
             for i in range(len(node.next)):
                 node.next[i] = update[i].next[i]
                 update[i].next[i] = node
+
+    def remove(self, elem):
+        update = self.updateList(elem)
+        x = self.find(elem, update)
+        if x != None:
+            for i in range(len(x.next)):
+                update[i].next[i] = x.next[i]
 
     # Метод вывода всех слов в спип листе
     def printAll(self):

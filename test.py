@@ -8,21 +8,22 @@ def menu():
     print("Введите команду 0-3")
     print("1. Показать все слова в словаре")
     print("2. Добавить новое слово")
-    print("3. Найти слово")
-    print("4. Показать меню")
+    print("3. Найти слово в словаре")
+    print("4. Удалить слово из словаря")
+    print("5. Показать меню")
     print("0. Завершить работу программы")
 
 
 # Заполнение скип листа начальными данными
 def inputDictionary(dictionary):
     # Массив со словами
-    arr = [DictionaryWord('car', 'машина'),DictionaryWord('phone', 'телефон'),DictionaryWord('window', 'окно'),
-           DictionaryWord('door', 'дверь'),DictionaryWord('blanket', 'одеяло'),DictionaryWord('move', 'двигаться'),
-           DictionaryWord('water', 'вода'),DictionaryWord('floor', 'этаж'), DictionaryWord('bad', 'плохо'),
-           DictionaryWord('good', 'хорошо'),DictionaryWord('try', 'попытка'), DictionaryWord('orange', 'апельсин'),
+    arr = [DictionaryWord('car', 'машина'), DictionaryWord('phone', 'телефон'), DictionaryWord('window', 'окно'),
+           DictionaryWord('door', 'дверь'), DictionaryWord('blanket', 'одеяло'), DictionaryWord('move', 'двигаться'),
+           DictionaryWord('water', 'вода'), DictionaryWord('floor', 'этаж'), DictionaryWord('bad', 'плохо'),
+           DictionaryWord('good', 'хорошо'), DictionaryWord('try', 'попытка'), DictionaryWord('orange', 'апельсин'),
            DictionaryWord('apple', 'яблоко'), DictionaryWord('banan', 'банан'), DictionaryWord('bird', 'птица'),
-           DictionaryWord('dog', 'собака'), DictionaryWord('cat', 'кот'),  DictionaryWord('leaves', 'листья'),
-           DictionaryWord('tree', 'дерево'),DictionaryWord('road', 'дорога') ]
+           DictionaryWord('dog', 'собака'), DictionaryWord('cat', 'кот'), DictionaryWord('leaves', 'листья'),
+           DictionaryWord('tree', 'дерево'), DictionaryWord('road', 'дорога')]
     # Добавление слов в скип лист
     for word in arr:
         dictionary.insert(word)
@@ -39,7 +40,15 @@ def addNewWord(dictionary):
 # Функция поиска слова в словаре
 def findWord(dictionary):
     word = input("Введите слово: ")
-    print(dictionaryList.find(word))
+    try:
+        print(dictionaryList.find(word).elem)
+    except AttributeError as error:
+        print("Слово не найдено")
+
+
+def deleteWord(dictionary):
+    word = input("Введите слово: ")
+    dictionary.remove(word)
 
 
 # Инициализация скип листа
@@ -51,6 +60,8 @@ flag = -1
 if __name__ == '__main__':
     # Заполнение словаря начальными данными
     inputDictionary(dictionaryList)
+    dictionaryList.remove('car')
+    dictionaryList.remove('apple')
     menu()
     while flag != 0:
         try:  # Обработка введенной команды
@@ -65,7 +76,9 @@ if __name__ == '__main__':
             addNewWord(dictionaryList)
         if flag == 3:  # Найти слово в словаре
             findWord(dictionaryList)
-        if flag == 4:  # Повторный вывод меню
+        if flag == 4:  # Удалить слово из словаря
+            deleteWord(dictionaryList)
+        if flag == 5:  # Повторный вывод меню
             menu()
         if flag == 0:  # Завершить работу программы
             print("Работы программы завершена.")
