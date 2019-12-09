@@ -14,6 +14,7 @@ def menu():
     print("0. Завершить работу программы")
 
 
+
 # Заполнение скип листа начальными данными
 def inputDictionary(dictionary):
     # Массив со словами
@@ -60,8 +61,6 @@ flag = -1
 if __name__ == '__main__':
     # Заполнение словаря начальными данными
     inputDictionary(dictionaryList)
-    dictionaryList.remove('car')
-    dictionaryList.remove('apple')
     menu()
     while flag != 0:
         try:  # Обработка введенной команды

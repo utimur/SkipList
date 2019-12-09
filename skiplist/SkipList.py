@@ -1,16 +1,19 @@
 from dictionaryWord import DictionaryWord
 
 
+
 class SkipNode:
     def __init__(self, height=0, elem=None):
         self.elem = elem
         self.next = [None] * height
 
 
+
 class SkipList:
     # Конструктор
     def __init__(self):
         self.head = SkipNode()
+
 
     # Вспомогательная функция обновляющая лист
     def updateList(self, elem):
@@ -58,7 +61,7 @@ class SkipList:
             for i in range(len(x.next)):
                 update[i].next[i] = x.next[i]
 
-    # Метод вывода всех слов в спип листе
+    # Метод вывода всех слов в скип листе
     def printAll(self):
         x = self.head
         for i in reversed(range(len(self.head.next))):
