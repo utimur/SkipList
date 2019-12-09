@@ -69,7 +69,10 @@ if __name__ == '__main__':
             print("Некорректная команда")
         if flag == 1:  # Вывод всех слов в словаре
             print("----------------")
-            dictionaryList.printAll()
+            try:
+                dictionaryList.printAll()
+            except IndexError as error:
+                error.args
             print("----------------")
         if flag == 2:  # Добавить новое слово в словарь
             addNewWord(dictionaryList)

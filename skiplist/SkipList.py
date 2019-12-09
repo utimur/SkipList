@@ -1,5 +1,5 @@
 from dictionaryWord import DictionaryWord
-
+import random
 
 
 class SkipNode:
@@ -43,7 +43,7 @@ class SkipList:
 
     # Метод вставки слова в скип лист
     def insert(self, elem):
-        node = SkipNode(3, elem)
+        node = SkipNode(self.randomHeight(), elem)
 
         while len(self.head.next) < len(node.next):
             self.head.next.append(None)
@@ -64,7 +64,11 @@ class SkipList:
     # Метод вывода всех слов в скип листе
     def printAll(self):
         x = self.head
-        for i in reversed(range(len(self.head.next))):
+        for i in (range(len(self.head.next))):
             while x.next[i] is not None:
                 x = x.next[i]
                 print(x.elem)
+
+
+    def randomHeight(self):
+        return random.randint(1,4)
